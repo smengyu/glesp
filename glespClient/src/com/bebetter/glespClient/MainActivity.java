@@ -2,14 +2,82 @@ package com.bebetter.glespClient;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import com.bebetter.glespFrameWork.GLESPBaseActivity;
+import com.bebetter.glespFrameWork.GLESPBaseApplication;
+import com.bebetter.glespFrameWork.dao.BaseRequest;
+import com.bebetter.glespFrameWork.dao.IBean;
+import com.bebetter.glespFrameWork.dao.IParser;
+import com.bebetter.glespFrameWork.dao.IRequest;
+import com.bebetter.glespFrameWork.dao.IResponse;
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 /**
  * Created by SamuraiSong on 16/12/14.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends GLESPBaseActivity {
+
+    private EditText userNameEditText;
+    private Button loginBtn;
+    private ImageView image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        userNameEditText = (EditText) findViewById(R.id.username);
+        loginBtn = (Button) findViewById(R.id.login);
+
+        loginBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userNameStr = userNameEditText.getText().toString();
+
+                BaseRequest baseRequest = new BaseRequest() {
+                    @Override
+                    public int getCategory() {
+                        return LOGIN;
+                    }
+
+                    @Override
+                    public HttpMethod getMethod() {
+                        return HttpMethod.POST;
+                    }
+
+                    @Override
+                    public String getUrl() {
+                        return "http://d1jeef.net";
+                    }
+
+                    @Override
+                    public IParser getParser() {
+                        return new LoginParser();
+                    }
+                };
+
+                sendRequest(baseRequest);
+            }
+        });
+
+        image = (ImageView) findViewById(R.id.image);
+        BitmapUtils bitmapUtils = GLESPBaseApplication.getInstance().getBitmapUtils();
+        bitmapUtils.display(image,"http;//.....");
+    }
+
+    @Override
+    public void handleResponse(IResponse response) {
+        IBean data = response.getData();
+    }
+
+    @Override
+    protected void handleMessage(Message msg) {
+        super.handleMessage(msg);
     }
 }

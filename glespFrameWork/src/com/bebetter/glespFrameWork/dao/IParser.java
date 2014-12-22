@@ -5,7 +5,7 @@ package com.bebetter.glespFrameWork.dao;
  */
 public interface IParser {
 
-      public IBean parse(String data);
+      public IBean parse(String json);
 
       public void setNextParser(IParser parser);
 

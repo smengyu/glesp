@@ -9,7 +9,7 @@ public interface IRequest {
 
       public long getID();
 
-      public int getCode();
+      public int getCategory();
 
       public HttpRequest.HttpMethod getMethod();
 

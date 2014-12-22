@@ -1,6 +1,9 @@
 package com.bebetter.glespFrameWork;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import com.bebetter.glespFrameWork.dao.IBean;
 import com.bebetter.glespFrameWork.dao.IRequest;
 import com.bebetter.glespFrameWork.dao.IResponse;
@@ -13,6 +16,14 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
  * Created by songmengyu on 14-10-14.
  */
 public abstract class GLESPBaseActivity extends Activity {
+
+    protected Handler mHandler = new Handler(Looper.myLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            handleMessage(msg);
+        }
+    };
+
 
       public void sendRequest(final IRequest request){
             GLESPBaseApplication.getInstance().getHttpUtils().send(request.getMethod(),request.getUrl(),new RequestCallBack<String>() {
@@ -50,4 +61,9 @@ public abstract class GLESPBaseActivity extends Activity {
       }
 
       public abstract void handleResponse(IResponse response);
+
+
+    protected void handleMessage(Message msg) {
+
+    }
 }
