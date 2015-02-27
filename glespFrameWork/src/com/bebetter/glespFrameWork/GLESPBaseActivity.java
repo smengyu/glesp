@@ -43,6 +43,7 @@ public abstract class GLESPBaseActivity extends Activity {
                         IBean bean = request.getParser().parse(stringResponseInfo.result);
                         IResponse response = new Response(request,bean);
                         handleResponse(response);
+                      mHandler.sendEmptyMessage(0);
                   }
 
                   @Override

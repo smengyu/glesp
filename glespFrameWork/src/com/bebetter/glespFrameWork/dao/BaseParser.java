@@ -5,4 +5,9 @@ package com.bebetter.glespFrameWork.dao;
  */
 public abstract class BaseParser implements IParser {
 
+    protected BaseParser nextParser = null;
+
+    public BaseParser (BaseParser nextParser) {
+        this.nextParser = nextParser;
+    }
 }

@@ -1,6 +1,5 @@
 package com.bebetter.glespClient;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.bebetter.glespFrameWork.GLESPBaseApplication;
 import com.bebetter.glespFrameWork.dao.BaseRequest;
 import com.bebetter.glespFrameWork.dao.IBean;
 import com.bebetter.glespFrameWork.dao.IParser;
-import com.bebetter.glespFrameWork.dao.IRequest;
 import com.bebetter.glespFrameWork.dao.IResponse;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
@@ -58,7 +56,7 @@ public class MainActivity extends GLESPBaseActivity {
 
                     @Override
                     public IParser getParser() {
-                        return new LoginParser();
+                        return new LoginParser(new StatusParser(null));
                     }
                 };
 
