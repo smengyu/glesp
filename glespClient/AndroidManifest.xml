@@ -3,9 +3,10 @@
           package="com.bebetter.glespClient"
           android:versionCode="1"
           android:versionName="1.0">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-sdk android:minSdkVersion="8"/>
-    <application android:label="@string/app_name">
+    <application android:label="@string/app_name"
+        android:name=".ClientApplication">
         <activity
             android:name="com.bebetter.glespClient.MainActivity"
             android:label="@string/app_name">

@@ -1,5 +1,6 @@
 package com.bebetter.glespFrameWork.dao;
 
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 /**
@@ -7,13 +8,15 @@ import com.lidroid.xutils.http.client.HttpRequest;
  */
 public interface IRequest {
 
-      public long getID();
+    public long getID();
 
-      public int getCategory();
+    public int getCategory();
 
-      public HttpRequest.HttpMethod getMethod();
+    public HttpRequest.HttpMethod getMethod();
 
-      public String getUrl();
+    public String getUrl();
 
-      public IParser getParser();
+    public IParser getParser();
+
+    public RequestParams getParams();
 }

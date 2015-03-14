@@ -8,12 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.bebetter.glespFrameWork.GLESPBaseActivity;
-import com.bebetter.glespFrameWork.GLESPBaseApplication;
 import com.bebetter.glespFrameWork.dao.BaseRequest;
 import com.bebetter.glespFrameWork.dao.IBean;
 import com.bebetter.glespFrameWork.dao.IParser;
 import com.bebetter.glespFrameWork.dao.IResponse;
-import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 /**
@@ -51,22 +50,26 @@ public class MainActivity extends GLESPBaseActivity {
 
                     @Override
                     public String getUrl() {
-                        return "http://d1jeef.net";
+                        return "http://bibaite.cn/interfaces.php/student/login.html";
                     }
 
                     @Override
                     public IParser getParser() {
                         return new LoginParser(new StatusParser(null));
                     }
+
+                    @Override
+                    public RequestParams getParams() {
+                        RequestParams requestParams = new RequestParams();
+                        requestParams.addQueryStringParameter("username", "123456");
+                        requestParams.addQueryStringParameter("password", "123456");
+                        return requestParams;
+                    }
                 };
 
                 sendRequest(baseRequest);
             }
         });
-
-        image = (ImageView) findViewById(R.id.image);
-        BitmapUtils bitmapUtils = GLESPBaseApplication.getInstance().getBitmapUtils();
-        bitmapUtils.display(image,"http;//.....");
     }
 
     @Override
