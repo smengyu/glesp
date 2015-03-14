@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import com.bebetter.glespFrameWork.dao.IBean;
 import com.bebetter.glespFrameWork.dao.IRequest;
 import com.bebetter.glespFrameWork.dao.IResponse;
@@ -74,6 +75,7 @@ public abstract class GLESPBaseActivity extends Activity {
                     @Override
                     public void onSuccess(ResponseInfo<String> stringResponseInfo) {
                         IBean bean = request.getParser().parse(stringResponseInfo.result);
+                        Log.d("HTTP RESP" ,stringResponseInfo.result);
                         IResponse response = new Response(request, bean);
                         handleResponse(response);
                         mHandler.sendEmptyMessage(0);
